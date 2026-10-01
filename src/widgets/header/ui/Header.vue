@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Auth from '~/widgets/auth/auth.vue'
+import { AuthButton } from '~/features/auth'
 </script>
 
 <template>
     <header class="flex flex-row">
-        <Auth />
+        <AuthButton />
     </header>
 </template>
