@@ -3,16 +3,16 @@ import { ref } from 'vue'
 import { register } from '../lib/register'
 import { login } from '../lib/login'
 
-const emits = defineEmits<{"modal-closed": []}>()
+const emits = defineEmits<{"modal-closed": [], "login": []}>()
 
 const registerMode = ref(false)
 
-const loginInputLogin = ref('')
+const loginInputLoginOrEmail = ref('')
 const loginInputPassword = ref('')
 
 const registerInputLogin = ref('')
 const registerInputEmail = ref('')
-const registerInputNickname = ref('')
+const registerInputDisplayName = ref('')
 const registerInputPassword = ref('')
 
 function closeEvent() {
@@ -27,15 +27,23 @@ function registerClick() {
     registerMode.value = true
 }
 
-function submitLogin() {
-    login(loginInputLogin.value, loginInputPassword.value)
+async function submitLogin() {
+    await login(loginInputLoginOrEmail.value, loginInputPassword.value)
+
+    closeEvent()
+    emits("login")
 }
 
-function submitRegister() {
-    register(registerInputLogin.value,
-    registerInputEmail.value,
-    registerInputNickname.value,
-    registerInputPassword.value)
+async function submitRegister() {
+    const login_data = await register(registerInputLogin.value,
+        registerInputEmail.value,
+        registerInputDisplayName.value,
+        registerInputPassword.value)
+
+    await login(login_data.loginOrEmail, login_data.password)
+
+    closeEvent()
+    emits("login")
 }
 </script>
 
@@ -61,7 +69,7 @@ function submitRegister() {
             <form v-if="!registerMode"
             class="flex flex-col gap-2.5 items-center text-white"
             @submit.prevent="submitLogin">
-                <input v-model="loginInputLogin"
+                <input v-model="loginInputLoginOrEmail"
                 class="border border-white rounded-2xl p-2.5"
                 type="text"
                 placeholder="Логин/email">
@@ -75,7 +83,7 @@ function submitRegister() {
                 type="submit">Войти</button>
             </form>
 
-            <form v-if="registerMode"
+            <form v-else
             class="flex flex-col gap-2.5 items-center text-white"
             @submit.prevent="submitRegister">
                 <input v-model="registerInputLogin"
@@ -88,7 +96,7 @@ function submitRegister() {
                 type="text"
                 placeholder="email">
 
-                <input v-model="registerInputNickname"
+                <input v-model="registerInputDisplayName"
                 class="border border-white rounded-2xl p-2.5"
                 type="text"
                 placeholder="Отображаемое имя">

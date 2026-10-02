@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import Header from '~/widgets/header/ui/Header.vue'
-import Footer from '~/widgets/footer/ui/Footer.vue'
+import { Header } from '~/widgets/header'
+import { Footer } from '~/widgets/footer'
 </script>
 
 <template>
     <div>
-        <Header></Header>
+        <Header />
         <slot></slot>
-        <Footer></Footer>
     </div>
 </template>

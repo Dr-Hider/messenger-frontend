@@ -1,1 +1,1 @@
-export { default as AuthButton } from './ui/AuthButton.vue'
+export { default as Auth } from './ui/Auth.vue'

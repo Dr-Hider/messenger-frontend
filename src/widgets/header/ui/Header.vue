@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { AuthButton } from '~/features/auth'
+import { Auth } from '~/features/auth'
 </script>
 
 <template>
     <header class="flex flex-row">
-        <AuthButton />
+        <Auth />
     </header>
 </template>
