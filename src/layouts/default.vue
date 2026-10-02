@@ -4,7 +4,7 @@ import { Footer } from '~/widgets/footer'
 </script>
 
 <template>
-    <div>
+    <div class="min-h-dvh text-sm md:text-lg text-white bg-neutral-900">
         <Header />
         <slot></slot>
     </div>

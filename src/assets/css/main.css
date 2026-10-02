@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-body {
-    min-height: 100dvh;
-    background-color: #202020;
+@font-face {
+    font-family: "audiowide";
+    src: url("~/assets/ttf/audiowide/audiowide-regular.ttf");
 }

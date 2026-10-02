@@ -30,15 +30,21 @@ async function checkAuth() {
 </script>
 
 <template>
-    <div class="flex flex-row gap-2.5 m-6 ml-auto items-center">
+    <div class="flex flex-row mr-auto items-center cursor-pointer">
+        <img class="size-16 md:size-28"
+        src="~/assets/svg/logo/logo.svg">
+        <p class="hidden md:block font-[audiowide] text-3xl">PULSE</p>
+    </div>
+
+    <div class="flex flex-row m-4 ml-auto items-center">
         <img v-if="authenticated"
-        class="size-8"
+        class="size-7 md:size-8 md:mr-1"
         src="~/assets/svg/person/person.svg">
 
         <p v-if="authenticated"
-        class="text-white text-xl mb-1">{{ displayName }}</p>
+        class="text-md md:text-xl mr-4 md:mr-8 mb-0.5 md:mb-1">{{ displayName }}</p>
 
-        <button class="bg-white rounded-lg text-black p-2 ml-8 cursor-pointer"
+        <button class="bg-white hover:bg-neutral-500 rounded-lg text-black p-1.5 md:p-2 cursor-pointer"
         type="button"
         @click="open">{{ buttonText }}</button>
     </div>

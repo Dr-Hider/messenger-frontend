@@ -54,7 +54,7 @@ async function submitRegister() {
             src="~/assets/svg/close/close.svg"
             @click="closeEvent">
 
-            <div class="flex flex-row gap-4 text-white">
+            <div class="flex flex-row gap-4">
                 <button class="cursor-pointer"
                 :class="{'underline': !registerMode}"
                 type="button"
@@ -79,12 +79,12 @@ async function submitRegister() {
                 type="password"
                 placeholder="Пароль">
                 
-                <button class="bg-blue-900 rounded-3xl p-2 cursor-pointer"
+                <button class="bg-blue-900 hover:bg-blue-950 rounded-3xl p-2.5 cursor-pointer"
                 type="submit">Войти</button>
             </form>
 
             <form v-else
-            class="flex flex-col gap-2.5 items-center text-white"
+            class="flex flex-col gap-2.5 items-center"
             @submit.prevent="submitRegister">
                 <input v-model="registerInputLogin"
                 class="border border-white rounded-2xl p-2.5"
@@ -106,8 +106,8 @@ async function submitRegister() {
                 type="password"
                 placeholder="Пароль">
                 
-                <button class="bg-blue-900 rounded-3xl p-2 cursor-pointer"
-                type="submit">Войти</button>
+                <button class="bg-blue-900 hover:bg-blue-950 rounded-3xl p-2.5 cursor-pointer"
+                type="submit">Зарегистрироваться</button>
             </form>
         </div>
     </div>

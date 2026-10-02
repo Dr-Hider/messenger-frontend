@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <!-- Vibrant Pulse Wave Gradient -->
+    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF007A" />
+      <stop offset="50%" stop-color="#7928CA" />
+      <stop offset="100%" stop-color="#00DFD8" />
+    </linearGradient>
+
+    <!-- Speech Bubble Fill Gradient -->
+    <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02" />
+    </linearGradient>
+
+    <!-- Inner Glow/Stroke Gradient -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00DFD8" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#7928CA" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#FF007A" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Soft Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Intense Glow for Highlights -->
+    <filter id="intenseGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="24" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Icon Container Centered -->
+  <g transform="translate(0, 0)">
+    
+    <!-- Outer Glassmorphic Speech Bubble Body -->
+    <path d="M 400 180 
+             C 521.5 180, 620 278.5, 620 400 
+             C 620 521.5, 521.5 620, 400 620 
+             C 350 620, 303.5 603.5, 265.8 575.5 
+             L 190 600 
+             L 221.2 529.2 
+             C 195.5 492.5, 180 448 180 400 
+             C 180 278.5, 278.5 180, 400 180 Z" 
+          fill="url(#bubbleGrad)" 
+          stroke="url(#borderGrad)" 
+          stroke-width="4" 
+          stroke-linecap="round"
+          stroke-linejoin="round" />
+
+    <!-- Pulse Heartbeat / EKG Line inside Bubble -->
+    <path d="M 250 400 
+             L 310 400 
+             L 335 340 
+             L 365 470 
+             L 400 270 
+             L 440 490 
+             L 470 360 
+             L 495 400 
+             L 550 400" 
+          fill="none" 
+          stroke="url(#pulseGrad)" 
+          stroke-width="18" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          filter="url(#glow)" />
+
+    <!-- Pulse Signal Glowing Nodes -->
+    <circle cx="400" cy="270" r="9" fill="#00DFD8" filter="url(#intenseGlow)" />
+    <circle cx="440" cy="490" r="9" fill="#FF007A" filter="url(#intenseGlow)" />
+    <circle cx="550" cy="400" r="7" fill="#00DFD8" />
+    <circle cx="250" cy="400" r="7" fill="#FF007A" />
+
+  </g>
+</svg>
