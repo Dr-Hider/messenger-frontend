@@ -30,12 +30,6 @@ async function checkAuth() {
 </script>
 
 <template>
-    <div class="flex flex-row mr-auto items-center cursor-pointer">
-        <img class="size-16 md:size-28"
-        src="~/assets/svg/logo/logo.svg">
-        <p class="hidden md:block font-[audiowide] text-3xl">PULSE</p>
-    </div>
-
     <div class="flex flex-row m-4 ml-auto items-center">
         <img v-if="authenticated"
         class="size-7 md:size-8 md:mr-1"
