@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import LoginModal from './LoginModal.vue'
 import { getMe } from '../lib/getMe.ts'
 
@@ -8,7 +8,9 @@ const authenticated = ref(false)
 const displayName = ref('')
 const buttonText = ref('Войти')
 
-await checkAuth()
+onMounted(async () => {
+    await checkAuth()
+})
 
 function open() {
     showModal.value = true
