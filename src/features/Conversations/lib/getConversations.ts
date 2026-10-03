@@ -1,0 +1,20 @@
+import { getToken } from "~/features/Auth/lib/getToken"
+
+export async function getConversations(): Promise<void> {
+    const apiUrl = useRuntimeConfig().public.apiBase
+
+    const csrf = await getToken()
+
+    const conversations_response = await fetch(`${apiUrl}/api/v1/me/conversations`, {
+        credentials: "include",
+        headers: {
+            "X-XSRF-TOKEN": csrf.token
+        }
+    })
+
+    if (!conversations_response.ok) {
+        throw new Error(`Something went wrong: ${conversations_response.status}`)
+    }
+
+    console.log(await conversations_response.json())
+}

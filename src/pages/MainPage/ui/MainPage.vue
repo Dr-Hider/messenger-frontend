@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { Conversations } from '~/features/Conversations'
+
 </script>
 
 <template>
-    <main>
-        <p class="text-white">Test text</p>
+    <main class="flex flex-col items-center">
+        <Conversations />
     </main>
 </template>

@@ -12,11 +12,11 @@ onMounted(async () => {
     await checkAuth()
 })
 
-function open() {
+function openModal() {
     showModal.value = true
 }
 
-function close() {
+function closeModal() {
     showModal.value = false
 }
 
@@ -42,8 +42,8 @@ async function checkAuth() {
 
         <button class="bg-white hover:bg-neutral-500 rounded-lg text-black p-1.5 md:p-2 cursor-pointer"
         type="button"
-        @click="open">{{ buttonText }}</button>
+        @click="openModal">{{ buttonText }}</button>
     </div>
 
-    <LoginModal v-if="showModal && !authenticated" @modal-closed="close" @login="checkAuth" />
+    <LoginModal v-if="showModal && !authenticated" @modal-closed="closeModal" @login="checkAuth" />
 </template>

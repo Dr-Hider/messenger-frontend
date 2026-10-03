@@ -35,7 +35,8 @@ async function submitLogin() {
 }
 
 async function submitRegister() {
-    const login_data = await register(registerInputLogin.value,
+    const login_data = await register(
+        registerInputLogin.value,
         registerInputEmail.value,
         registerInputDisplayName.value,
         registerInputPassword.value)

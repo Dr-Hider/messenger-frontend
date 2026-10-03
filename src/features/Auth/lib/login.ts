@@ -1,9 +1,8 @@
-import type { LoginRequest} from "../types/auth"
+import type { LoginRequest } from "../types/auth"
 import { getToken } from "./getToken"
 
-export async function login(loginOrEmail: string, password: string) {
+export async function login(loginOrEmail: string, password: string): Promise<void> {
     const apiUrl = useRuntimeConfig().public.apiBase
-
     const csrf = await getToken()
 
     const body: LoginRequest = {
