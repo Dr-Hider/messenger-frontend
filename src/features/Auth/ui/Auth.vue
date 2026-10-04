@@ -6,6 +6,7 @@ import { getMe } from '../lib/getMe.ts'
 const showModal = ref(false)
 const authenticated = ref(false)
 const displayName = ref('')
+const id = ref (0)
 const buttonText = ref('Войти')
 
 onMounted(async () => {
@@ -26,6 +27,7 @@ async function checkAuth() {
     if (me.id !== -1) {
         authenticated.value = true
         displayName.value = me.displayName
+        id.value = me.id
         buttonText.value = "Выйти"
     }
 }
@@ -38,12 +40,12 @@ async function checkAuth() {
         src="~/assets/svg/person/person.svg">
 
         <p v-if="authenticated"
-        class="text-md md:text-xl mr-4 md:mr-8 mb-0.5 md:mb-1">{{ displayName }}</p>
+        class="text-md md:text-xl mr-4 md:mr-8 mb-0.5 md:mb-1">{{ displayName }} ({{ id }})</p>
 
         <button class="bg-white hover:bg-neutral-500 rounded-lg text-black p-1.5 md:p-2 cursor-pointer"
         type="button"
         @click="openModal">{{ buttonText }}</button>
     </div>
 
-    <LoginModal v-if="showModal && !authenticated" @modal-closed="closeModal" @login="checkAuth" />
+    <LoginModal v-if="showModal && !authenticated" @modal-closed="closeModal" />
 </template>

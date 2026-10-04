@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { register } from '../lib/register'
 import { login } from '../lib/login'
 
-const emits = defineEmits<{"modal-closed": [], "login": []}>()
+const emits = defineEmits<{"modal-closed": []}>()
 
 const registerMode = ref(false)
 
@@ -28,10 +28,13 @@ function registerClick() {
 }
 
 async function submitLogin() {
-    await login(loginInputLoginOrEmail.value, loginInputPassword.value)
+    const login_result = await login(loginInputLoginOrEmail.value, loginInputPassword.value)
 
-    closeEvent()
-    emits("login")
+    if (login_result !== "Ok") {
+        return
+    }
+
+    window.location.reload()
 }
 
 async function submitRegister() {
@@ -40,11 +43,18 @@ async function submitRegister() {
         registerInputEmail.value,
         registerInputDisplayName.value,
         registerInputPassword.value)
+    
+    if (login_data.loginOrEmail === "") {
+        return
+    }
 
-    await login(login_data.loginOrEmail, login_data.password)
+    const login_result = await login(login_data.loginOrEmail, login_data.password)
 
-    closeEvent()
-    emits("login")
+    if (login_result !== "Ok") {
+        return
+    }
+
+    window.location.reload()
 }
 </script>
 

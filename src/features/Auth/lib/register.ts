@@ -27,7 +27,10 @@ export async function register(
         })
 
         if (!register_response.ok) {
-            throw new Error(`Something went wrong: ${register_response.status}`)
+            return {
+                loginOrEmail: "",
+                password: ""
+            }
         }
 
         return {

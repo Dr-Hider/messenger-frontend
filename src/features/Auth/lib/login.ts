@@ -1,7 +1,7 @@
 import type { LoginRequest } from "../types/auth"
 import { getToken } from "./getToken"
 
-export async function login(loginOrEmail: string, password: string): Promise<void> {
+export async function login(loginOrEmail: string, password: string): Promise<string> {
     const apiUrl = useRuntimeConfig().public.apiBase
     const csrf = await getToken()
 
@@ -21,6 +21,8 @@ export async function login(loginOrEmail: string, password: string): Promise<voi
     })
 
     if (!login_response.ok) {
-        throw new Error(`Something went wrong: ${login_response.status}`)
+        return `Error: ${login_response.status}`
     }
+
+    return "Ok"
 }

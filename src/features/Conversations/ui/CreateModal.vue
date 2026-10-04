@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { createConversation } from '../lib/createConversation';
-const emits = defineEmits<{"modal-closed": []}>()
+const emits = defineEmits<{"modal-closed": [], "created": []}>()
 
 const inputTitle = ref('')
 const inputType = ref('')
@@ -20,6 +20,9 @@ async function submitCreate() {
             Number(inputCompanionId.value)
         )
     }
+
+    emits("created")
+    emits("modal-closed")
 }
 </script>
 
@@ -47,7 +50,7 @@ async function submitCreate() {
                 <select v-model="inputVisibility"
                 class="border border-white rounded-2xl p-2.5 w-full">
                     <option value="">Видимость</option>
-                    <OPTION value="OPEN">Открытый</OPTION>
+                    <option value="OPEN">Открытый</OPTION>
                     <option value="PRIVATE">Приватный</option>
                 </select>
 
