@@ -1,18 +1,18 @@
-import { getToken } from "~/features/Auth/lib/getToken"
+import { getToken } from "~/features/Auth"
 import type { Conversation } from "../types/conversations"
 
 export async function getConversation(id: number): Promise<Conversation> {
     const apiUrl = useRuntimeConfig().public.apiBase
     const csrf = await getToken()
 
-    const conversation_response = await fetch(`${apiUrl}/api/v1/conversations/${id}`, {
+    const conversationResponse = await fetch(`${apiUrl}/api/v1/conversations/${id}`, {
         credentials: "include",
         headers: {
             "X-XSRF-TOKEN": csrf.token
         }
     })
 
-    if (!conversation_response.ok) {
+    if (!conversationResponse.ok) {
         return {
             id: -1,
             title: "",
@@ -22,5 +22,5 @@ export async function getConversation(id: number): Promise<Conversation> {
         }
     }
 
-    return await conversation_response.json()
+    return await conversationResponse.json()
 }

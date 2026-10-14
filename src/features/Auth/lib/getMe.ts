@@ -3,11 +3,11 @@ import type { Me } from "../types/auth"
 export async function getMe(): Promise<Me> {
     const apiUrl = useRuntimeConfig().public.apiBase
 
-    const check_response = await fetch(`${apiUrl}/api/v1/users/me`, {
+    const checkResponse = await fetch(`${apiUrl}/api/v1/users/me`, {
         credentials: "include"
     })
 
-    if (!check_response.ok) {
+    if (!checkResponse.ok) {
         return {
             id: -1,
             login: "",
@@ -18,6 +18,6 @@ export async function getMe(): Promise<Me> {
     }
 
     else {
-        return await check_response.json()
+        return await checkResponse.json()
     }
 }

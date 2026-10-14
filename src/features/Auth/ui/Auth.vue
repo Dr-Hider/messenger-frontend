@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import LoginModal from './LoginModal.vue'
-import { getMe } from '../lib/getMe.ts'
 
 const showModal = ref(false)
 const authenticated = ref(false)
@@ -22,12 +21,10 @@ function closeModal() {
 }
 
 async function checkAuth() {
-    const me = await getMe()
-
-    if (me.id !== -1) {
+    if (localStorage.getItem("id") !== "-1") {
         authenticated.value = true
-        displayName.value = me.displayName
-        id.value = me.id
+        displayName.value = localStorage.getItem("displayName") ?? ""
+        id.value = Number(localStorage.getItem("id") ?? "0")
         buttonText.value = "Выйти"
     }
 }
@@ -47,5 +44,5 @@ async function checkAuth() {
         @click="openModal">{{ buttonText }}</button>
     </div>
 
-    <LoginModal v-if="showModal && !authenticated" @modal-closed="closeModal" />
+    <LoginModal v-if="showModal && !authenticated" @modal-closed="closeModal" @logged-in="checkAuth" />
 </template>

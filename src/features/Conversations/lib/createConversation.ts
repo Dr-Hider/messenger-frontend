@@ -28,7 +28,7 @@ export async function createConversation(
                 companionId: companionId
             }
 
-            const create_response = await fetch(`${apiUrl}/api/v1/conversations`, {
+            const createResponse = await fetch(`${apiUrl}/api/v1/conversations`, {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -37,5 +37,9 @@ export async function createConversation(
                 },
                 body: JSON.stringify(body)
             })
+
+            if (!createResponse.ok) {
+                throw new Error(`Something went wrong: ${createResponse.status}`)
+            }
         }
 }

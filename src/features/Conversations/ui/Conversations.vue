@@ -4,11 +4,17 @@ import CreateModal from './CreateModal.vue'
 import { getMyConversations } from '../lib/getMyConversations'
 import ConversationCard from './ConversationCard.vue'
 import type { MyConversation } from '../types/conversations'
-import { getMe } from '~/features/Auth'
 
 const showCreateModal = ref(false)
 const data = ref<MyConversation[]>([])
 const authenticated = ref(false)
+
+onMounted(async () => {
+    if (localStorage.getItem("id") !== "-1") {
+        authenticated.value = true
+    }
+    await updateData()
+})
 
 function openCreateModal() {
     showCreateModal.value = true
@@ -21,17 +27,6 @@ function closeCreateModal() {
 async function updateData() {
     data.value = (await getMyConversations()).conversations
 }
-
-async function checkAuth() {
-    const me = await getMe()
-    if (me.id !== -1) {
-        authenticated.value = true
-    }
-}
-onMounted(async () => {
-    await checkAuth()
-    await updateData()
-})
 </script>
 
 <template>

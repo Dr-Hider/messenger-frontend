@@ -1,7 +1,7 @@
 import type { LoginRequest } from "../types/auth"
 import { getToken } from "./getToken"
 
-export async function login(loginOrEmail: string, password: string): Promise<string> {
+export async function login(loginOrEmail: string, password: string): Promise<Response> {
     const apiUrl = useRuntimeConfig().public.apiBase
     const csrf = await getToken()
 
@@ -10,7 +10,7 @@ export async function login(loginOrEmail: string, password: string): Promise<str
         password: password
     }
     
-    const login_response = await fetch(`${apiUrl}/api/v1/auth/login`, {
+    return await fetch(`${apiUrl}/api/v1/auth/login`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -19,10 +19,4 @@ export async function login(loginOrEmail: string, password: string): Promise<str
         },
         body: JSON.stringify(body)
     })
-
-    if (!login_response.ok) {
-        return `Error: ${login_response.status}`
-    }
-
-    return "Ok"
 }

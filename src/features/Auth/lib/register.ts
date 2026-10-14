@@ -16,7 +16,7 @@ export async function register(
             password: password
         }
         
-        const register_response = await fetch(`${apiUrl}/api/v1/users`, {
+        const registerResponse = await fetch(`${apiUrl}/api/v1/users`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -26,7 +26,7 @@ export async function register(
             body: JSON.stringify(body)
         })
 
-        if (!register_response.ok) {
+        if (!registerResponse.ok) {
             return {
                 loginOrEmail: "",
                 password: ""
