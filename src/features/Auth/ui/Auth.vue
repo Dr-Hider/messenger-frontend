@@ -21,6 +21,7 @@ function closeModal() {
 }
 
 async function checkAuth() {
+    console.log(localStorage.getItem("id"))
     if (localStorage.getItem("id") !== "-1") {
         authenticated.value = true
         displayName.value = localStorage.getItem("displayName") ?? ""

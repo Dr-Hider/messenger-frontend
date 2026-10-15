@@ -1,5 +1,6 @@
 import type { LoginRequest } from "../types/auth"
 import { getToken } from "./getToken"
+import { getMe } from "./getMe"
 
 export async function login(loginOrEmail: string, password: string): Promise<Response> {
     const apiUrl = useRuntimeConfig().public.apiBase
@@ -10,7 +11,7 @@ export async function login(loginOrEmail: string, password: string): Promise<Res
         password: password
     }
     
-    return await fetch(`${apiUrl}/api/v1/auth/login`, {
+    const loginResponse = await fetch(`${apiUrl}/api/v1/auth/login`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -19,4 +20,10 @@ export async function login(loginOrEmail: string, password: string): Promise<Res
         },
         body: JSON.stringify(body)
     })
+
+    const me = await getMe()
+    localStorage.setItem("id", me.id.toString())
+    localStorage.setItem("displayName", me.displayName)
+
+    return loginResponse
 }
