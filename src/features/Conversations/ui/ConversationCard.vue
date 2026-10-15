@@ -29,10 +29,15 @@ onMounted(async () => {
         lastMessageCreatedAt.value = props.lastMessage.createdAt
     }
 })
+
+function openConversation(id: number) {
+    navigateTo(`/conversation/${id}`)
+}
 </script>
 
 <template>
-    <div class="flex flex-col bg-neutral-800 hover:bg-neutral-700 rounded-2xl w-3xs md:w-2xl p-5 cursor-pointer">
+    <div class="flex flex-col bg-neutral-800 hover:bg-neutral-700 rounded-2xl w-3xs md:w-2xl p-5 cursor-pointer"
+    @click="openConversation(conversationId)">
         <p><b>{{ title }}</b></p>
         <div v-if="lastMessageText === 'Нет сообщений'" class="flex flex-row">
             <p>{{ lastMessageText }}</p>

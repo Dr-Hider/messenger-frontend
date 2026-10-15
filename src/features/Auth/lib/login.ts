@@ -21,9 +21,11 @@ export async function login(loginOrEmail: string, password: string): Promise<Res
         body: JSON.stringify(body)
     })
 
-    const me = await getMe()
-    localStorage.setItem("id", me.id.toString())
-    localStorage.setItem("displayName", me.displayName)
+    if (loginResponse.ok) {
+        const me = await getMe()
+        localStorage.setItem("id", me.id.toString())
+        localStorage.setItem("displayName", me.displayName)
+    }
 
     return loginResponse
 }
