@@ -1,1 +1,1 @@
-Before building Docker container, create .env and add the variable `NUXT_PUBLIC_API_BASE` with your API URL
+If your API URL is not `http://localhost:8080`, change the value of `NUXT_PUBLIC_API_BASE` before building Docker container
