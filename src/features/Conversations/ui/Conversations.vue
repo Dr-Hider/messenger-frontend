@@ -30,7 +30,7 @@ async function updateData() {
 </script>
 
 <template>
-    <section class="flex flex-col items-center gap-5">
+    <section class="flex-1 min-h-0 overflow-y-auto flex flex-col items-center gap-5 p-4 w-full">
         <button v-if="authenticated"
         class="bg-white hover:bg-neutral-500 rounded-lg text-black p-1.5 md:p-2 cursor-pointer"
         type="button"
@@ -39,7 +39,7 @@ async function updateData() {
         <CreateModal v-if="showCreateModal"
         @modal-closed="closeCreateModal" @created="updateData"/>
 
-        <ConversationCard v-if="data[0]?.conversationId !== -1"
+        <ConversationCard v-if="data.length > 0"
         v-for="item in data"
         :key="item.conversationId"
         :conversationId="item.conversationId"

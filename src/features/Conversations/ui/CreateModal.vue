@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { createConversation } from '../lib/createConversation';
+import { createConversationWithCompanion } from '../lib/createConversation';
 const emits = defineEmits<{"modal-closed": [], "created": []}>()
 
 const inputTitle = ref('')
-const inputType = ref('')
-const inputVisibility = ref('')
+const inputType = ref('DIRECT')
+const inputVisibility = ref('PRIVATE')
 const inputCompanionId = ref('')
 
 function closeEvent() {
@@ -13,12 +13,16 @@ function closeEvent() {
 
 async function submitCreate() {
     if (inputCompanionId.value !== "") {
-        await createConversation(
+        const createResponse = await createConversationWithCompanion(
             inputTitle.value,
             inputType.value,
             inputVisibility.value,
             Number(inputCompanionId.value)
         )
+
+        if (!createResponse.ok) {
+            return
+        }
     }
 
     emits("created")
@@ -39,7 +43,7 @@ async function submitCreate() {
                 class="border border-white rounded-2xl p-2.5"
                 type="text"
                 placeholder="Название">
-
+<!--
                 <select v-model="inputType"
                 class="border border-white rounded-2xl p-2.5 w-full">
                     <option value="">Тип</option>
@@ -53,7 +57,7 @@ async function submitCreate() {
                     <option value="OPEN">Открытый</OPTION>
                     <option value="PRIVATE">Приватный</option>
                 </select>
-
+-->
                 <input v-model="inputCompanionId"
                 class="border border-white rounded-2xl p-2.5"
                 type="text"

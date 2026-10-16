@@ -4,8 +4,8 @@ import { Footer } from '~/widgets/Footer'
 </script>
 
 <template>
-    <div class="min-h-dvh text-sm md:text-lg text-white bg-neutral-900">
-        <Header />
+    <div class="h-dvh flex flex-col text-sm md:text-lg text-white bg-neutral-900 overflow-hidden">
+        <Header class="shrink-0" />
         <slot></slot>
     </div>
 </template>

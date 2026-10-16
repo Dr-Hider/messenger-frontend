@@ -1,6 +1,7 @@
 import { getToken } from '~/features/Auth'
+import type { Messages } from '../types/conversations'
 
-export async function getMessages(conversationId: number): Promise<Response> {
+export async function getMessages(conversationId: number): Promise<Messages> {
     const apiUrl = useRuntimeConfig().public.apiBase
     const csrf = await getToken()
 
@@ -11,5 +12,14 @@ export async function getMessages(conversationId: number): Promise<Response> {
         }
     })
 
-    return messagesResponse
+    if (!messagesResponse.ok) {
+        return {
+            messages: [],
+            hasMore: false,
+            nextLastCreatedAt: "",
+            nextLastId: -1
+        }
+    }
+
+    return await messagesResponse.json()
 }

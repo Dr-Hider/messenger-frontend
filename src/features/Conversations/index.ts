@@ -1,2 +1,7 @@
 export { default as Conversations } from './ui/Conversations.vue'
 export { default as MessagesBox } from './ui/MessagesBox.vue'
+export { sendMessage } from './lib/sendMessage'
+export { useConversationSocket } from './lib/useConversationSocket'
+export { getMessages } from './lib/getMessages'
+export * from './types/conversations'
+export * from './types/socket'

@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: messenger-frontend:latest
+    container_name: messenger-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=3000
+      - NUXT_PUBLIC_API_BASE=http://localhost:8080
+    restart: unless-stopped
+

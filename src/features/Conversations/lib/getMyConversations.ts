@@ -15,23 +15,7 @@ export async function getMyConversations(): Promise<MyConversations> {
 
     if (!conversations_response.ok) {
         return {
-            conversations: [
-                {
-                    conversationId: -1,
-                    lastMessage: {
-                        id: -1,
-                        sender: {
-                            id: -1,
-                            displayName: ""
-                        },
-                        text: "",
-                        createdAt: "",
-                        deletedAt: ""
-                    },
-                    updatedAt: "",
-                    unreadCount: -1
-                }
-            ],
+            conversations: [],
             nextLastUpdatedAt: "",
             nextLastId: -1
         }

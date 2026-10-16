@@ -31,3 +31,10 @@ export interface Conversation {
     visibility: string
     createdAt: string
 }
+
+export interface Messages {
+    messages: Message[]
+    hasMore: boolean
+    nextLastCreatedAt: string
+    nextLastId: number
+}

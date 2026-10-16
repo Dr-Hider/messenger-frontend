@@ -43,10 +43,9 @@ function openConversation(id: number) {
             <p>{{ lastMessageText }}</p>
         </div>
         <div v-else class="flex flex-row gap-2">
-            <p>{{ lastMessageSender }}</p>
+            <p>{{ lastMessageSender }}:</p>
             <p>{{ lastMessageText }}</p>
-            <p>{{ lastMessageCreatedAt }}</p>
-            <p>{{ unreadCount }}</p>
+            <p class="ml-auto"><b>{{ unreadCount }}</b></p>
         </div>
     </div>
 </template>

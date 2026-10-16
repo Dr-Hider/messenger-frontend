@@ -8,7 +8,11 @@ export async function getToken(): Promise<Csrf> {
     })
 
     if (!tokenResponse.ok) {
-        throw new Error(`Something went wrong: ${tokenResponse.status}`)
+        return {
+            parameterName: "",
+            token: "",
+            headerName: ""
+        }
     }
 
     return await tokenResponse.json()

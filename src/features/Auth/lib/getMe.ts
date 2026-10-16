@@ -17,7 +17,5 @@ export async function getMe(): Promise<Me> {
         }
     }
 
-    else {
-        return await checkResponse.json()
-    }
+    return await checkResponse.json()
 }
