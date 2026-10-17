@@ -79,8 +79,6 @@ onMounted(async () => {
 
     if (id.value > 0) {
         const response = await getMessages(id.value)
-        // Backend returns messages descending (newest first).
-        // Reverse them so the chat flows chronologically (oldest at top, newest at bottom).
         messages.value = (response.messages || []).slice().reverse()
         scrollToBottom()
     }
@@ -88,17 +86,12 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div
-        ref="containerRef"
-        class="bg-neutral-800 rounded-2xl flex flex-col gap-2 p-4 w-3xs md:w-2xl flex-1 min-h-0 overflow-y-auto"
-    >
-        <div v-if="messages.length > 0" class="mt-auto" />
-
-        <div
-            v-for="message in messages"
-            :key="message.id"
-            class="flex flex-col hover:bg-neutral-700/60 p-3 md:p-4 rounded-xl transition-colors"
-        >
+    <div ref="containerRef"
+    class="bg-neutral-800 rounded-2xl flex flex-col gap-2 p-4 w-3xs md:w-2xl flex-1 min-h-0 overflow-y-auto">
+        <div v-if="messages.length > 0" class="mt-auto"></div>
+        <div v-for="message in messages"
+        :key="message.id"
+        class="flex flex-col hover:bg-neutral-700/60 p-3 md:p-4 rounded-xl transition-colors">
             <p class="text-sm font-semibold text-blue-400">
                 {{ message.sender?.displayName || 'Пользователь' }}
             </p>

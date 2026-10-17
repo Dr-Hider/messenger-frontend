@@ -30,7 +30,7 @@ function registerClick() {
 async function submitLogin() {
     const loginResponse = await login(loginInputLoginOrEmail.value, loginInputPassword.value)
 
-    if (!loginResponse.ok) {
+    if (!loginResponse) {
         return
     }
 
@@ -46,7 +46,7 @@ async function submitRegister() {
 
     const loginResponse = await login(loginData.loginOrEmail, loginData.password)
 
-    if (!loginResponse.ok) {
+    if (!loginResponse) {
         return
     }
 

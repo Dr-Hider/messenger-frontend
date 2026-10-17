@@ -5,7 +5,7 @@ export async function createConversationWithCompanion(
     title: string,
     type: string,
     visibility: string,
-    companionId: number): Promise<Response> {
+    companionId: number): Promise<boolean> {
         const apiUrl = useRuntimeConfig().public.apiBase
         const csrf = await getToken()
 
@@ -16,7 +16,7 @@ export async function createConversationWithCompanion(
             companionId: companionId
         }
 
-        return await fetch(`${apiUrl}/api/v1/conversations`, {
+        const createResponse =  await fetch(`${apiUrl}/api/v1/conversations`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -25,4 +25,6 @@ export async function createConversationWithCompanion(
             },
             body: JSON.stringify(body)
         })
+
+        return createResponse.ok
 }

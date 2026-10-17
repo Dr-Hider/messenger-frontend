@@ -2,7 +2,7 @@ import type { LoginRequest } from "../types/auth"
 import { getToken } from "./getToken"
 import { getMe } from "./getMe"
 
-export async function login(loginOrEmail: string, password: string): Promise<Response> {
+export async function login(loginOrEmail: string, password: string): Promise<boolean> {
     const apiUrl = useRuntimeConfig().public.apiBase
     const csrf = await getToken()
 
@@ -27,5 +27,5 @@ export async function login(loginOrEmail: string, password: string): Promise<Res
         localStorage.setItem("displayName", me.displayName)
     }
 
-    return loginResponse
+    return loginResponse.ok
 }

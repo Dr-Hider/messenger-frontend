@@ -20,7 +20,7 @@ async function submitCreate() {
             Number(inputCompanionId.value)
         )
 
-        if (!createResponse.ok) {
+        if (!createResponse) {
             return
         }
     }

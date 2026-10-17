@@ -13,4 +13,3 @@ services:
       - PORT=3000
       - NUXT_PUBLIC_API_BASE=http://localhost:8080
     restart: unless-stopped
-

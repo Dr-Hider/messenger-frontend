@@ -58,7 +58,6 @@ export function useConversationSocket(
             return
         }
 
-        // Subscribe to conversation broadcast topic
         conversationSub = client.subscribe(`/topic/conversations/${convId}`, (message) => {
             try {
                 const event: WebSocketEvent = JSON.parse(message.body)
@@ -68,7 +67,6 @@ export function useConversationSocket(
             }
         })
 
-        // Subscribe to user private queue
         userQueueSub = client.subscribe('/user/queue/messages', (message) => {
             try {
                 const event: WebSocketEvent = JSON.parse(message.body)
